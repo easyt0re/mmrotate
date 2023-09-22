@@ -44,6 +44,7 @@ English | [简体中文](README_zh-CN.md)
 </div>
 
 ## Introduction
+The original project is mmrotate. I forked a copy for my personal study. Let's hope I did it the correct way. 
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
