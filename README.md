@@ -116,6 +116,8 @@ dd: this seems to be outdated. the installation steps in the [Install Guide](htt
 
 dd: although the one in the docs also has some problem. once reached verify, step 1 will already give you some error. the inference demo is even worse. 
 
+dd: lesson of the day 20230923: why did I try to do this on windows? at least start from WSL
+
 ```shell
 conda create -n open-mmlab python=3.7 pytorch==1.7.0 cudatoolkit=10.1 torchvision -c pytorch -y
 conda activate open-mmlab
