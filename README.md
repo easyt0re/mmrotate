@@ -49,9 +49,9 @@ The original project is mmrotate. I forked a copy for my personal study. Let's h
 I might need to put this to private but I don't know how for the moment. 
 
 - The 1st step, or maybe the 0th step, is to use the "vanilla" version properly, get with the program. 
-- [] through this process, I might want to keep track of commands I use to "set up shops" and automate.
+- [ ] through this process, I might want to keep track of commands I use to "set up shops" and automate.
 - The current step is to study a mod version of the project, supposedly. 
-- [] to understand the changes, I might want to update folder by folder. This could also be a backup when I cannot fully understand or capture all the changes.
+- [ ] to understand the changes, I might want to update folder by folder. This could also be a backup when I cannot fully understand or capture all the changes.
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
@@ -112,12 +112,18 @@ MMRotate depends on [PyTorch](https://pytorch.org/), [MMCV](https://github.com/o
 Below are quick steps for installation.
 Please refer to [Install Guide](https://mmrotate.readthedocs.io/en/latest/install.html) for more detailed instruction.
 
+dd: this seems to be outdated. the installation steps in the [Install Guide](https://mmrotate.readthedocs.io/en/latest/install.html) have a more updated version. 
+
+dd: although the one in the docs also has some problem. once reached verify, step 1 will already give you some error. the inference demo is even worse. 
+
 ```shell
 conda create -n open-mmlab python=3.7 pytorch==1.7.0 cudatoolkit=10.1 torchvision -c pytorch -y
 conda activate open-mmlab
 pip install openmim
 mim install mmcv-full
 mim install mmdet
+# dd: will stuck here with "OSError: CUDA_HOME environment variable is not set. 
+#     Please set it to your CUDA install root."
 git clone https://github.com/open-mmlab/mmrotate.git
 cd mmrotate
 pip install -r requirements/build.txt
