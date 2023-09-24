@@ -118,6 +118,8 @@ dd: although the one in the docs also has some problem. once reached verify, ste
 
 dd: lesson of the day 20230923: why did I try to do this on windows? at least start from WSL
 
+dd: change to WSL still has trouble downloading o_rcnn.py. but there is already a version of it in configs folder, using that one for the moment. somehow dd managed to run the download line. do comparison later. 
+
 ```shell
 conda create -n open-mmlab python=3.7 pytorch==1.7.0 cudatoolkit=10.1 torchvision -c pytorch -y
 conda activate open-mmlab
