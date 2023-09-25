@@ -1,6 +1,7 @@
 from mmengine.model import is_model_wrapper
-from mmengine.hooks import Hook
-from mmdet.registry import HOOKS
+# from mmengine.hooks import Hook
+# from mmdet.registry import HOOKS
+from mmcv.runner import HOOKS, Hook
 
 
 @HOOKS.register_module()

@@ -7,7 +7,7 @@ classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Con
 # data_root = 'datasets/CASIA-Ship/'
 # data_root = 'data/split_ss_dota/'
 data_root = '/home/hdd/lixiaohan/mmr/datasets/SRSDD_DOTA/'
-n_frozen_epoch = 5
+n_frozen_epoch = 1
 
 data = dict(
     samples_per_gpu=8,  # batch-size
