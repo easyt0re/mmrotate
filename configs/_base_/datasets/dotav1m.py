@@ -35,14 +35,16 @@ data = dict(
     samples_per_gpu=2,
     workers_per_gpu=2,
     train=dict(
-        type='ClassBalancedDataset',
-        oversample_thr=0.1,
-        dataset=dict(
+        # type='ClassBalancedDataset',
+        # oversample_thr=0.1,
+        # dataset=dict(
             type=dataset_type,
             classes=classes,
             ann_file=data_root + 'train/labels/',
             img_prefix=data_root + 'train/images/',
-            pipeline=train_pipeline)),
+            pipeline=train_pipeline
+        #   )
+        ),
     val=dict(
         type=dataset_type,
         classes=classes,
