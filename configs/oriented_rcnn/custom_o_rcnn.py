@@ -6,13 +6,13 @@ classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Con
 # data_root = 'datasets/split_data/'
 # data_root = 'datasets/CASIA-Ship/'
 # data_root = 'data/split_ss_dota/'
-# data_root = '/home/hdd/lixiaohan/mmr/datasets/SRSDD_DOTA/'
-data_root = 'datasets/SRSDD_DOTA/'
+data_root = '../mmr/datasets/SRSDD_DOTA/'
+
 n_frozen_stages = 1
 n_frozen_epoch = 5
 
 data = dict(
-    samples_per_gpu=8,  # batch-size
+    samples_per_gpu=2,  # batch-size
     workers_per_gpu=0,
     train=dict(
         type=dataset_type,
