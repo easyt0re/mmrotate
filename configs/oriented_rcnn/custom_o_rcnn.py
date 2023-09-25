@@ -7,6 +7,7 @@ classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Con
 # data_root = 'datasets/CASIA-Ship/'
 # data_root = 'data/split_ss_dota/'
 data_root = '/home/hdd/lixiaohan/mmr/datasets/SRSDD_DOTA/'
+n_frozen_epoch = 5
 
 data = dict(
     samples_per_gpu=8,  # batch-size
@@ -33,28 +34,9 @@ data = dict(
 model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=len(classes))
-    )
+    ),
+    backbone=dict(frozen_stages=n_frozen_epoch)
 )
 
-# copy over from what's from the top
-angle_version = 'le90'
-img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='RResize', img_scale=(1024, 1024)),
-    dict(
-        type='RRandomFlip',
-        flip_ratio=[0.25, 0.25, 0.25],
-        direction=['horizontal', 'vertical', 'diagonal'],
-        version=angle_version),
-    dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size_divisor=32),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels'])
-]
-data = dict(
-    train=dict(pipeline=train_pipeline, version=angle_version),
-    val=dict(version=angle_version),
-    test=dict(version=angle_version))
+custom_imports = dict(imports=['unfreeze_backbone_epoch_based_hook'], allow_failed_imports=False)
+custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
