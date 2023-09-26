@@ -51,3 +51,6 @@ model = dict(
 
 # custom_imports = dict(imports=['unfreeze_backbone_epoch_based_hook'], allow_failed_imports=False)
 # custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
+
+runner = dict(type='EpochBasedRunner', max_epochs=30)
+checkpoint_config = dict(interval=5)
