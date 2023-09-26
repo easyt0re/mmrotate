@@ -13,7 +13,7 @@ data_root = '../mmr/datasets/SRSDD_DOTA/'
 
 data = dict(
     samples_per_gpu=2,  # batch-size
-    workers_per_gpu=0,
+    workers_per_gpu=2,
     train=dict(
         type=dataset_type,
         classes=classes,
