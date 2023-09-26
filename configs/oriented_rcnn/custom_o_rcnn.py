@@ -8,8 +8,8 @@ classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Con
 # data_root = 'data/split_ss_dota/'
 data_root = '../mmr/datasets/SRSDD_DOTA/'
 
-n_frozen_stages = 1
-n_frozen_epoch = 5
+# n_frozen_stages = 1
+# n_frozen_epoch = 5
 
 data = dict(
     samples_per_gpu=2,  # batch-size
@@ -37,8 +37,8 @@ model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=len(classes))
     ),
-    backbone=dict(frozen_stages=n_frozen_stages)
+    # backbone=dict(frozen_stages=n_frozen_stages)
 )
 
-custom_imports = dict(imports=['unfreeze_backbone_epoch_based_hook'], allow_failed_imports=False)
-custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
+# custom_imports = dict(imports=['unfreeze_backbone_epoch_based_hook'], allow_failed_imports=False)
+# custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
