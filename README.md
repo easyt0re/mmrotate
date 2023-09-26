@@ -49,9 +49,19 @@ The original project is mmrotate. I forked a copy for my personal study. Let's h
 I might need to put this to private but I don't know how for the moment. 
 
 - The 1st step, or maybe the 0th step, is to use the "vanilla" version properly, get with the program. 
-- [ ] through this process, I might want to keep track of commands I use to "set up shops" and automate.
+- [x] through this process, I might want to keep track of commands I use to "set up shops" and automate.
+  - seems a bit hard to do. bad docs. search error msg can solve most things.
 - The current step is to study a mod version of the project, supposedly. 
-- [ ] to understand the changes, I might want to update folder by folder. This could also be a backup when I cannot fully understand or capture all the changes.
+- [x] to understand the changes, I might want to update folder by folder. This could also be a backup when I cannot fully understand or capture all the changes.
+  - didn't do this part. I probably don't need to. 
+
+start a todo list here
+- [ ] think and search about overfitting
+
+start a held list here
+- [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
+- [ ] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
+
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
