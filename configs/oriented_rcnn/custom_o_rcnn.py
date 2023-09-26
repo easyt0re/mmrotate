@@ -1,8 +1,11 @@
 _base_ = 'oriented_rcnn_r50_fpn_1x_dota_le90.py'
 
+import torch
+
 dataset_type = 'DOTADataset'
 classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
-class_weight = [1., 1., 1., 10., 1., 1.]
+class_weight = torch.tensor([1., 1., 1., 10., 1., 1., 1.]) # no label last
+
 # classes = ('ship', 'submarine')
 # data_root = 'datasets/split_data/'
 # data_root = 'datasets/CASIA-Ship/'
@@ -35,15 +38,12 @@ data = dict(
 )
 
 model = dict(
-    rpn_head=dict(
-        loss_cls=dict(class_weight=class_weight)
-        # changed this based on this page
-        # https://mmdetection.readthedocs.io/en/v2.9.0/_modules/mmdet/models/losses/cross_entropy_loss.html
-    ),
     roi_head=dict(
         bbox_head=dict(
             num_classes=len(classes),
             loss_cls=dict(class_weight=class_weight)
+            # changed this based on this page
+            # https://mmdetection.readthedocs.io/en/v2.9.0/_modules/mmdet/models/losses/cross_entropy_loss.html
         )
     ),
     # backbone=dict(frozen_stages=n_frozen_stages)
