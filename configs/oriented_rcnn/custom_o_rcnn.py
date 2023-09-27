@@ -75,6 +75,7 @@ model = dict(
 # custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
 
 # schedule
+optimizer = dict(lr=0.05) # default 0.005
 # learning policy
 lr_config = None
 # lr_config = dict(
