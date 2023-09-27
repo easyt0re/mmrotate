@@ -75,7 +75,7 @@ model = dict(
 # custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
 
 # schedule
-optimizer = dict(lr=0.05) # default 0.005
+optimizer = dict(lr=0.005) # default 0.005
 # learning policy
 lr_config = None
 # lr_config = dict(
@@ -85,7 +85,7 @@ lr_config = None
 #     warmup_ratio=1.0 / 3,
 #     step=[8, 11]
 #     )
-runner = dict(type='EpochBasedRunner', max_epochs=20)
+runner = dict(type='EpochBasedRunner', max_epochs=50)
 checkpoint_config = dict(interval=5)
 
 #default runtime

@@ -57,11 +57,18 @@ I might need to put this to private but I don't know how for the moment.
 
 start a todo list here
 - [ ] think and search about overfitting
+  - [ ] L1 or combination of L1/L2
+  - [ ] dropout `true`
+  - [ ] increase `iou_thres` in `batch_non_max_suppression`
+  - [ ] adam
+  - [ ] apparently, lr policy also helps
 - [x] change class weights to "balance" weak/strong classes
   - by assign class gain in config file, roi_head, bbox_head, loss
 - [x] reset lr policy to be constant/fixed (by default, it's step)
 - [ ] step: change when overfitting (val loss up instead of down)
-- [ ] mentioned focal loss, alpha, beta
+- [ ] mentioned [focal loss](https://mmrotate.readthedocs.io/en/stable/_modules/mmrotate/models/losses/smooth_focal_loss.html), alpha, beta
+- [ ] even balance tasks: class/regress
+- [ ] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
