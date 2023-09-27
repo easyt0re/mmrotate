@@ -85,10 +85,10 @@ lr_config = None
 #     warmup_ratio=1.0 / 3,
 #     step=[8, 11]
 #     )
-runner = dict(type='EpochBasedRunner', max_epochs=50)
-checkpoint_config = dict(interval=5)
+runner = dict(type='EpochBasedRunner', max_epochs=150)
+checkpoint_config = dict(interval=10)
 
 #default runtime
-ckpt_name = 'epoch_1.pth' # specify ckpt file name here
-resume_from = './work_dirs/resume_ckpt/' + ckpt_name
+# ckpt_name = 'epoch_1.pth' # specify ckpt file name here
+# resume_from = './work_dirs/resume_ckpt/' + ckpt_name
 workflow = [('train', 1)]
