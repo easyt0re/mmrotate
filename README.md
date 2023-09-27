@@ -57,6 +57,8 @@ I might need to put this to private but I don't know how for the moment.
 
 start a todo list here
 - [ ] think and search about overfitting
+- [x] change class weights to "balance" weak/strong classes
+  - by assign class gain in config file, roi_head, bbox_head, loss
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.

@@ -4,7 +4,29 @@ import torch
 
 dataset_type = 'DOTADataset'
 classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
-class_weight = torch.tensor([1., 1., 1., 10., 1., 1., 1.]) # no label last
+n_classes = len(classes)
+
+# compute class weight in theory
+n_ore = 18.
+n_cel = 11.
+n_fis = 42.
+n_law = 3.
+n_dre = 22.
+n_con = 275.
+n_bac = 275. # assume n_bac == class has most
+n_total = n_ore + n_cel + n_fis + n_law + n_dre + n_con + n_bac
+
+w_ore = n_total / n_ore / (n_classes + 1)
+w_cel = n_total / n_cel / (n_classes + 1)
+w_fis = n_total / n_fis / (n_classes + 1)
+w_law = n_total / n_law / (n_classes + 1)
+w_dre = n_total / n_dre / (n_classes + 1)
+w_con = n_total / n_con / (n_classes + 1)
+w_bac = n_total / n_bac / (n_classes + 1)
+
+class_weight = torch.tensor([w_ore, w_cel, w_fis, w_law, w_dre, w_con, w_bac]) # no label last
+# this calculation should give weights around [5, 8, 2, 30, 4, 0.3, 0.3]
+# class_weight = torch.tensor([5., 1., 1., 10., 1., 0.5, 0.5]) # one time with mAP > 0.4
 
 # classes = ('ship', 'submarine')
 # data_root = 'datasets/split_data/'
@@ -40,7 +62,7 @@ data = dict(
 model = dict(
     roi_head=dict(
         bbox_head=dict(
-            num_classes=len(classes),
+            num_classes=n_classes,
             loss_cls=dict(class_weight=class_weight)
             # changed this based on this page
             # https://mmdetection.readthedocs.io/en/v2.9.0/_modules/mmdet/models/losses/cross_entropy_loss.html
