@@ -59,6 +59,9 @@ start a todo list here
 - [ ] think and search about overfitting
 - [x] change class weights to "balance" weak/strong classes
   - by assign class gain in config file, roi_head, bbox_head, loss
+- [x] reset lr policy to be constant/fixed (by default, it's step)
+- [ ] step: change when overfitting (val loss up instead of down)
+- [ ] mentioned focal loss, alpha, beta
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
