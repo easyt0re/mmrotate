@@ -71,7 +71,9 @@ start a todo list here
 - [ ] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
 - [ ] run train back to back with sript
 - [ ] fix cannot resume or load
-  - [ ] found [this issue](https://github.com/open-mmlab/mmdetection/issues/10438#issuecomment-1633894504) and try it out
+  - [x] found [this issue](https://github.com/open-mmlab/mmdetection/issues/10438#issuecomment-1633894504) and try it out
+  - probably not the version in use, not really useful
+  - [x] confirm hard to get resume working. load works. 
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
