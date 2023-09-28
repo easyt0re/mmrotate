@@ -34,7 +34,7 @@ data = dict(
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'test/annfiles/',
+        ann_file=data_root + 'test/labels/',
         img_prefix=data_root + 'test/images/'),
 )
 

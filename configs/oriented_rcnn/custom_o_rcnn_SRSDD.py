@@ -1,7 +1,5 @@
 _base_ = 'oriented_rcnn_r50_fpn_1x_dota_le90.py'
 
-import torch
-
 dataset_type = 'DOTADataset'
 classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
 n_classes = len(classes)
@@ -26,7 +24,7 @@ n_classes = len(classes)
 
 # class_weight = torch.tensor([w_ore, w_cel, w_fis, w_law, w_dre, w_con, w_bac]) # no label last
 # # this calculation should give weights around [5, 8, 2, 30, 4, 0.3, 0.3]
-class_weight = torch.tensor([5., 1., 1., 10., 1., 0.5, 0.5]) # one time with mAP > 0.4
+class_weight = [5., 1., 1., 10., 1., 0.5, 0.5] # one time with mAP > 0.4
 
 # classes = ('ship', 'submarine')
 # data_root = 'datasets/split_data/'
@@ -55,7 +53,7 @@ data = dict(
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'test/annfiles/',
+        ann_file=data_root + 'test/labels/',
         img_prefix=data_root + 'test/images/'),
 )
 
