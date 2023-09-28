@@ -1,12 +1,10 @@
 _base_ = 'oriented_rcnn_r50_fpn_1x_dota_le90.py'
 
-import torch
-
 dataset_type = 'DOTADataset'
 classes = ('ship', 'submarine')
 n_classes = len(classes)
 
-class_weight = torch.tensor([5., 1., 1., 10., 1., 0.5, 0.5]) # one time with mAP > 0.4
+class_weight = [1., 20., 0.5]
 
 # classes = ('ship', 'submarine')
 # data_root = 'datasets/split_data/'
@@ -66,7 +64,7 @@ lr_config = None
 #     warmup_ratio=1.0 / 3,
 #     step=[8, 11]
 #     )
-runner = dict(type='EpochBasedRunner', max_epochs=20)
+runner = dict(type='EpochBasedRunner', max_epochs=10)
 checkpoint_config = dict(interval=5)
 
 #default runtime
