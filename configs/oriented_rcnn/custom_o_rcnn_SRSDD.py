@@ -75,18 +75,18 @@ model = dict(
 # schedule
 optimizer = dict(lr=0.005) # default 0.005
 # learning policy
-lr_config = None
-# lr_config = dict(
-#     policy='step',
-#     warmup='linear',
-#     warmup_iters=500,
-#     warmup_ratio=1.0 / 3,
-#     step=[8, 11]
-#     )
+# lr_config = None
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=4000,
+    warmup_ratio=1.0 / 3,
+    step=[5,90]
+    )
 runner = dict(type='EpochBasedRunner', max_epochs=150)
 checkpoint_config = dict(interval=10)
 
 #default runtime
 ckpt_name = 'epoch_50.pth' # specify ckpt file name here
-load_from = './work_dirs/resume_ckpt/' + ckpt_name
+# load_from = './work_dirs/resume_ckpt/' + ckpt_name
 workflow = [('train', 1)]
