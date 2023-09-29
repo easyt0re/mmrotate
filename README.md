@@ -79,6 +79,20 @@ start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
 - [ ] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
 
+tensorboard reading notes here:
+- SRS o_rcnn
+  - "best"
+    - has a "nice" gain we like to follow
+    - suspect things happened in the beginning and later of the train -> step policy
+  - constant lr "sweep"
+    - 5e-2, too big?
+    - 5e-3, what we used, OK, something happened before 1/4 or 1/5
+    - 5e-4, maybe small, maybe need longer, something happened around 1/4
+- CAS o_rcnn
+  - max_epoch = 60, something happened right in the middle
+- o_rep
+  - max_epoch = 80, hasn't reach overfitting yet -> run longer, load from
+
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
