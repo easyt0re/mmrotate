@@ -116,6 +116,8 @@ note for given
 - need to change data_root or move data
 - need to change sample_per_gpu and worker_per_gpu
   - see [this page](https://github.com/Adamdad/ConsistentTeacher/issues/19) here, we will need to try
+- use --auto-resume flag in cmd to get true and seems to be working
+  - resume not working but auto fine...
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
