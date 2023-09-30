@@ -209,6 +209,6 @@ model = dict(
         max_per_img=2000))
 classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger',
            'Container')
-# work_dir = './run/oriented_reppoints'
+work_dir = './run/oriented_reppoints'
 auto_resume = 'True'
 gpu_ids = [0]
