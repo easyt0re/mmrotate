@@ -3,8 +3,8 @@ _base_ = 'Custom.py'
 data_root = '../mmr/datasets/CASIA-Ship/'
 
 data = dict(
-    # samples_per_gpu=2,  # batch-size
-    # workers_per_gpu=2,
+    samples_per_gpu=2,  # batch-size
+    workers_per_gpu=2,
     train=dict(
         ann_file=data_root + 'train/labels/',
         img_prefix=data_root + 'train/images/'),

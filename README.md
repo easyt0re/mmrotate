@@ -57,8 +57,9 @@ I might need to put this to private but I don't know how for the moment.
 
 daily todo here
 - [x] anaylyze tensorboard from yesterday
-- [ ] o-rep on 2 dataset ?
+- [ ] o-rep on 2 dataset train more + 200
 - [x] r-frcnn implementation
+
 
 start a todo list here
 - [ ] think and search about overfitting
@@ -114,6 +115,7 @@ note for given
 - all have specified work_dir, good, run for SR
 - need to change data_root or move data
 - need to change sample_per_gpu and worker_per_gpu
+  - see [this page](https://github.com/Adamdad/ConsistentTeacher/issues/19) here, we will need to try
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
