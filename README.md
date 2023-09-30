@@ -55,6 +55,11 @@ I might need to put this to private but I don't know how for the moment.
 - [x] to understand the changes, I might want to update folder by folder. This could also be a backup when I cannot fully understand or capture all the changes.
   - didn't do this part. I probably don't need to. 
 
+daily todo here
+- [x] anaylyze tensorboard from yesterday
+- [ ] o-rep on 2 dataset ?
+- [x] r-frcnn implementation
+
 start a todo list here
 - [ ] think and search about overfitting
   - [ ] L1 or combination of L1/L2
@@ -66,6 +71,9 @@ start a todo list here
   - by assign class gain in config file, roi_head, bbox_head, loss
 - [x] reset lr policy to be constant/fixed (by default, it's step)
 - [ ] step: change when overfitting (val loss up instead of down)
+  - read a bit more, step is not for solving overfitting it seems
+  - warm up: "ResNet models, which use a low learning rate that increases linearly to the base learning rate in the first five epochs, and then decreases by a factor of 10 every 30 epochs.". our back bone is resnet. 
+  - current steping is not working properly, maybe need to give up
 - [ ] mentioned [focal loss](https://mmrotate.readthedocs.io/en/stable/_modules/mmrotate/models/losses/smooth_focal_loss.html), alpha, beta
 - [ ] even balance tasks: class/regress
 - [ ] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
@@ -74,6 +82,8 @@ start a todo list here
   - [x] found [this issue](https://github.com/open-mmlab/mmdetection/issues/10438#issuecomment-1633894504) and try it out
   - probably not the version in use, not really useful
   - [x] confirm hard to get resume working. load works. 
+- seems that we have everything from the guy, redo that?
+  - [ ] PRIORITY: get the code working with our structure of files
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
@@ -90,8 +100,15 @@ tensorboard reading notes here:
     - 5e-4, maybe small, maybe need longer, something happened around 1/4
 - CAS o_rcnn
   - max_epoch = 60, something happened right in the middle
+  - 150 new best
+    - consider step before 1/4, best at 11k/43k, 0.777
+  - 50CA1e2
+    - also something happened around 12k, coincidence? 0.75. 1e-2 might to large
 - o_rep
-  - max_epoch = 80, hasn't reach overfitting yet -> run longer, load from
+  - ~max_epoch = 80, hasn't reach overfitting yet -> run longer, load from~
+  - CA, could train longer, almost stable, maybe small lr, something good at 5k/22k
+  - SR, definitely train longer, 80 at 0.4, meaning 160 to see if 0.6, start with larger lr?
+
 
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
