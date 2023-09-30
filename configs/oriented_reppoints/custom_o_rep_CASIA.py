@@ -64,8 +64,8 @@ lr_config = None
 #     warmup_ratio=1.0 / 3,
 #     step=[8, 11]
 #     )
-runner = dict(type='EpochBasedRunner', max_epochs=300)
-checkpoint_config = dict(interval=30)
+runner = dict(type='EpochBasedRunner', max_epochs=350)
+checkpoint_config = dict(interval=50)
 
 #default runtime
 # ckpt_name = 'epoch_1.pth' # specify ckpt file name here
