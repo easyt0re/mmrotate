@@ -109,7 +109,11 @@ tensorboard reading notes here:
   - CA, could train longer, almost stable, maybe small lr, something good at 5k/22k
   - SR, definitely train longer, 80 at 0.4, meaning 160 to see if 0.6, start with larger lr?
 
-
+note for given
+- seems range(0,1) is the same as 0 (1 gpu train)
+- all have specified work_dir, good, run for SR
+- need to change data_root or move data
+- need to change sample_per_gpu and worker_per_gpu
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
