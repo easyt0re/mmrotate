@@ -78,13 +78,13 @@ start a todo list here
 - [ ] mentioned [focal loss](https://mmrotate.readthedocs.io/en/stable/_modules/mmrotate/models/losses/smooth_focal_loss.html), alpha, beta
 - [ ] even balance tasks: class/regress
 - [ ] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
-- [ ] run train back to back with sript
-- [ ] fix cannot resume or load
+- [x] run train back to back with sript
+- [x] fix cannot resume or load
   - [x] found [this issue](https://github.com/open-mmlab/mmdetection/issues/10438#issuecomment-1633894504) and try it out
   - probably not the version in use, not really useful
   - [x] confirm hard to get resume working. load works. 
 - seems that we have everything from the guy, redo that?
-  - [ ] PRIORITY: get the code working with our structure of files
+  - [x] PRIORITY: get the code working with our structure of files
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
