@@ -89,6 +89,7 @@ start a todo list here
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
 - [ ] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
+- [ ] finally stumbled upon this: [PolyRandomRotate](https://mmrotate.readthedocs.io/en/stable/api.html#mmrotate.datasets.pipelines.PolyRandomRotate). seems like it only rotate certain classes, might help with unbalanced. however, I still feel like we should sample this class more, or have more in this class, rather than rotate
 
 tensorboard reading notes here:
 - SRS o_rcnn
@@ -108,7 +109,11 @@ tensorboard reading notes here:
 - o_rep
   - ~max_epoch = 80, hasn't reach overfitting yet -> run longer, load from~
   - CA, could train longer, almost stable, maybe small lr, something good at 5k/22k
+    - to 150, increased a little, consider step
   - SR, definitely train longer, 80 at 0.4, meaning 160 to see if 0.6, start with larger lr?
+    - increased indeed, consider maybe even longer, 200. 150 is now 
+- rfrcnn
+  - SR, 100, best at 60, seems flat, consider step
 
 note for given
 - seems range(0,1) is the same as 0 (1 gpu train)
