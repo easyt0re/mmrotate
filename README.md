@@ -88,7 +88,18 @@ start a todo list here
 
 start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
-- [ ] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
+- [x] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
+  - current env: 
+  | mmcv-full               | 1.7.1    |
+  | mmdet                   | 2.28.2   |
+  | mmengine                | 0.8.4    |
+  | mmrotate                | 0.3.4    |
+  | numpy                   | 1.24.3   |
+  - somehow, balanced set is using `numpy.int`, which is removed in 1.20.0
+  - if we go `numpy'<1.20.0'`, we will have 1.19.5, which doesn't support `matplotlib`
+  - to get around it and mod the file locally, we narrow down to write our own custom dataset and wrapper
+  - it's confirmed that we don't have that error anymore but whether it helps with an unbalanced set still needs to be tested
+  - these mods should not affect other part of the code
 - [ ] finally stumbled upon this: [PolyRandomRotate](https://mmrotate.readthedocs.io/en/stable/api.html#mmrotate.datasets.pipelines.PolyRandomRotate). seems like it only rotate certain classes, might help with unbalanced. however, I still feel like we should sample this class more, or have more in this class, rather than rotate
 
 tensorboard reading notes here:
