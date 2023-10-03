@@ -24,6 +24,8 @@ def build_dataset(cfg, default_args=None):
                                                  ConcatDataset,
                                                  MultiImageMixDataset,
                                                  RepeatDataset)
+    # lets go wild
+    from mmrotate.datasets.my_dataset_wrappers import DDClassBalancedDataset
     if isinstance(cfg, (list, tuple)):
         dataset = ConcatDataset([build_dataset(c, default_args) for c in cfg])
     elif cfg['type'] == 'ConcatDataset':
@@ -35,6 +37,10 @@ def build_dataset(cfg, default_args=None):
             build_dataset(cfg['dataset'], default_args), cfg['times'])
     elif cfg['type'] == 'ClassBalancedDataset':
         dataset = ClassBalancedDataset(
+            build_dataset(cfg['dataset'], default_args), cfg['oversample_thr'])
+    # lets go wild
+    elif cfg['type'] == 'DDClassBalancedDataset':
+        dataset = DDClassBalancedDataset(
             build_dataset(cfg['dataset'], default_args), cfg['oversample_thr'])
     elif cfg['type'] == 'MultiImageMixDataset':
         cp_cfg = copy.deepcopy(cfg)
