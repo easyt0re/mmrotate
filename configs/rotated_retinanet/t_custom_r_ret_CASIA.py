@@ -22,6 +22,14 @@ train_pipeline = [
         flip_ratio=[0.25, 0.25, 0.25],
         direction=['horizontal', 'vertical', 'diagonal'],
         version=angle_version),
+    dict(
+        type='PolyRandomRotate',
+        mode='value',
+        rotate_ratio=0.5,
+        angles_range=[90, 180, -90],
+        auto_bound=False,
+        rect_classes=[2],
+        version=angle_version),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
     dict(type='DefaultFormatBundle'),
@@ -59,6 +67,12 @@ model = dict(
     # roi_head=dict(
         bbox_head=dict(
             num_classes=n_classes,
+            loss_cls=dict(
+                type='FocalLoss',
+                use_sigmoid=True,
+                gamma=4.0,
+                alpha=0.6,
+                loss_weight=1.0),
             # loss_cls=dict(class_weight=class_weight)
             # changed this based on this page
             # https://mmdetection.readthedocs.io/en/v2.9.0/_modules/mmdet/models/losses/cross_entropy_loss.html
