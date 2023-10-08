@@ -2,10 +2,10 @@
 
 # Set the path to the configuration file and checkpoint file
 CONFIG_FILE="configs/oriented_rcnn/custom_o_rcnn_SRSDD.py"
-CHECKPOINT_FILE="goodckpts/SR/oriented_rcnn/best.pth"
-PKL_FILE="testpkls/SR/oriented_rcnn/test_orcnn_SR.pkl"
+CHECKPOINT_FILE="ckpt/11.pth"
+PKL_FILE="testpkls/11.pkl"
 
-MAT_PATH="confMat/SR/oriented_rcnn/" # need to create this dir first, maybe one level is fine since need to save again (rename)
+MAT_PATH="confMat/11/" # need to create this dir first, maybe one level is fine since need to save again (rename)
 
 # Set the evaluation metrics
 EVAL_METRICS="mAP"
