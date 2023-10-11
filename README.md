@@ -97,12 +97,12 @@ start a held list here
 - [x] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
   - current env: 
 
-  | mmcv-full               | 1.7.1    |
-  | mmdet                   | 2.28.2   |
-  | mmengine                | 0.8.4    |
-  | mmrotate                | 0.3.4    |
-  | numpy                   | 1.24.3   |
-  
+| mmcv-full               | 1.7.1    |
+| mmdet                   | 2.28.2   |
+| mmengine                | 0.8.4    |
+| mmrotate                | 0.3.4    |
+| numpy                   | 1.24.3   |
+
   - somehow, balanced set is using `numpy.int`, which is removed in 1.20.0
   - if we go `numpy'<1.20.0'`, we will have 1.19.5, which doesn't support `matplotlib`
   - to get around it and mod the file locally, we narrow down to write our own custom dataset and wrapper
