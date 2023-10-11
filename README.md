@@ -97,6 +97,8 @@ start a held list here
 - [x] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
   - current env: 
 
+| Package Name            | Version  |
+|-------------------------|----------|
 | mmcv-full               | 1.7.1    |
 | mmdet                   | 2.28.2   |
 | mmengine                | 0.8.4    |
