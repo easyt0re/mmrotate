@@ -57,11 +57,12 @@ I might need to put this to private but I don't know how for the moment.
 
 daily todo here
 - [x] anaylyze tensorboard from yesterday
-- [ ] o-rep on 2 dataset train more + 200
+- [x] o-rep on 2 dataset train more + 200
 - [x] r-frcnn implementation
 
 
 start a todo list here
+- [ ] get the result on speed
 - [ ] think and search about overfitting
   - [ ] L1 or combination of L1/L2
   - [ ] dropout `true`
@@ -70,14 +71,19 @@ start a todo list here
   - [ ] apparently, lr policy also helps
 - [x] change class weights to "balance" weak/strong classes
   - by assign class gain in config file, roi_head, bbox_head, loss
+  - [ ] do quick test to confirm we actually have the "correct" understanding of class weight
 - [x] reset lr policy to be constant/fixed (by default, it's step)
 - [ ] step: change when overfitting (val loss up instead of down)
   - read a bit more, step is not for solving overfitting it seems
   - warm up: "ResNet models, which use a low learning rate that increases linearly to the base learning rate in the first five epochs, and then decreases by a factor of 10 every 30 epochs.". our back bone is resnet. 
   - current steping is not working properly, maybe need to give up
-- [ ] mentioned [focal loss](https://mmrotate.readthedocs.io/en/stable/_modules/mmrotate/models/losses/smooth_focal_loss.html), alpha, beta
+  - already applied to some of the model/set
+  - can also use step outside of max epoch to "disable" step
+- [x] mentioned [focal loss](https://mmrotate.readthedocs.io/en/stable/_modules/mmrotate/models/losses/smooth_focal_loss.html), alpha, beta
+  - model 2 and 4 use this, tuned alpha and gamma
 - [ ] even balance tasks: class/regress
-- [ ] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
+- [x] try [confusion matrix](https://mmrotate.readthedocs.io/en/stable/useful_tools.html#confusion-matrix) for visualization
+  - worote a .sh to automate gen this for all 8 cases
 - [x] run train back to back with sript
 - [x] fix cannot resume or load
   - [x] found [this issue](https://github.com/open-mmlab/mmdetection/issues/10438#issuecomment-1633894504) and try it out
@@ -90,17 +96,22 @@ start a held list here
 - [ ] fine tune idea: looks like by default, stage 1 is frozen at all times. maybe cannot unfreeze. might run into CUDA mem error.
 - [x] balanced set: the built-in one seems unsupported with numpy. maybe write my own as custom. 
   - current env: 
+
   | mmcv-full               | 1.7.1    |
   | mmdet                   | 2.28.2   |
   | mmengine                | 0.8.4    |
   | mmrotate                | 0.3.4    |
   | numpy                   | 1.24.3   |
+  
   - somehow, balanced set is using `numpy.int`, which is removed in 1.20.0
   - if we go `numpy'<1.20.0'`, we will have 1.19.5, which doesn't support `matplotlib`
   - to get around it and mod the file locally, we narrow down to write our own custom dataset and wrapper
   - it's confirmed that we don't have that error anymore but whether it helps with an unbalanced set still needs to be tested
   - these mods should not affect other part of the code
-- [ ] finally stumbled upon this: [PolyRandomRotate](https://mmrotate.readthedocs.io/en/stable/api.html#mmrotate.datasets.pipelines.PolyRandomRotate). seems like it only rotate certain classes, might help with unbalanced. however, I still feel like we should sample this class more, or have more in this class, rather than rotate
+- [x] finally stumbled upon this: [PolyRandomRotate](https://mmrotate.readthedocs.io/en/stable/api.html#mmrotate.datasets.pipelines.PolyRandomRotate). seems like it only rotate certain classes, might help with unbalanced. however, I still feel like we should sample this class more, or have more in this class, rather than rotate
+  - applied this to SOME current "test" versions of config, maybe helped with overfitting
+  - [ ] maybe do this to all cases
+  - [ ] explore `rect_class`, currently use `None`
 
 tensorboard reading notes here:
 - SRS o_rcnn
