@@ -71,7 +71,9 @@ start a todo list here
   - [ ] apparently, lr policy also helps
 - [x] change class weights to "balance" weak/strong classes
   - by assign class gain in config file, roi_head, bbox_head, loss
-  - [ ] do quick test to confirm we actually have the "correct" understanding of class weight
+  - [x] do quick test to confirm we actually have the "correct" understanding of class weight
+    - confirmed that it's indeed the correct order/weight
+    - tried `[0,100,0]` and `[0,0,100]` on CA
 - [x] reset lr policy to be constant/fixed (by default, it's step)
 - [ ] step: change when overfitting (val loss up instead of down)
   - read a bit more, step is not for solving overfitting it seems
