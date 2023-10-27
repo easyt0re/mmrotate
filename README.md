@@ -115,6 +115,29 @@ start a held list here
   - [ ] maybe do this to all cases
   - [ ] explore `rect_class`, currently use `None`
 
+new things to do, seems like most of the things here we've already implemented
+
+then I found [this repo](https://github.com/LiWentomng/OrientedRepPoints) that points to [this post](https://zhuanlan.zhihu.com/p/422764914)
+
+here are some of the notes and thoughts from this reading
+  - 数据集存在长尾效应
+  - 考虑到比赛规则中对检测速度没有要求，且这种失衡比单纯采用过/欠采样和调节各类别的loss权重效果都不会太好，所以选择为部分类别单独训练一个检测器是性价比极高的做法。同时为了平衡各个类别的分布，一些多样本数据增强策略是可以尝试的。
+  - maybe we really need to chop things up, see 离线数据处理
+  - [ ] learn train pipeline
+  - 最大的好处就是绝对不会过拟合
+  - 在训练后期关闭多样本数据增强继续训练，此时的精度提升就十分明显
+  - Anchor-free算法只有Oriented Reppoints性能表现最好
+  - [ ] Anchor-Based算法中旋转RoI系列表现最佳
+  - 最后的Neck选择 —— PANet
+  - look at the conclusion part and more
+  - Stochastic Weight Averaging (SWA), choose to ignore for now
+  - [ ] backbone: swint, neck: PANet or ReFPN
+  - [ ] chop things up with [this](https://github.com/CAPTAIN-WHU/DOTA_devkit)
+    - subsize=1024, stride=768 (gap=512)
+    - MS = [0.5 0.75 1.0 1.5 2.0]
+
+
+
 tensorboard reading notes here:
 - SRS o_rcnn
   - "best"
