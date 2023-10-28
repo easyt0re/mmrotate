@@ -172,6 +172,13 @@ note for given
 - use --auto-resume flag in cmd to get true and seems to be working
   - resume not working but auto fine...
 
+putting the env together is a bit old now, let's note this down
+- follow the instructions
+- sudo apt install libgl1-mesa-glx
+- pip install yapf==0.40.1
+- `mmrotate`, `datasets`, `__init__` `builder` and the rest
+
+
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
 It is a part of the [OpenMMLab project](https://github.com/open-mmlab).
 
