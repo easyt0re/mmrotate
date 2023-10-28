@@ -16,7 +16,7 @@ data_root = '../mmr/datasets/CASIA-Ship/'
 # n_frozen_stages = 1
 # n_frozen_epoch = 5
 
-angle_version = 'le90'
+angle_version = 'le135'
 
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
