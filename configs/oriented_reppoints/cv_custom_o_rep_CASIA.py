@@ -97,7 +97,10 @@ model = dict(
         type='PAFPN',
         in_channels=[96, 192, 384, 768],
         out_channels=256,
-        num_outs=5))
+        num_outs=5),
+    bbox_head=dict(
+            num_classes=n_classes)
+    )
 
 # custom_imports = dict(imports=['unfreeze_backbone_epoch_based_hook'], allow_failed_imports=False)
 # custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
