@@ -20,7 +20,6 @@ data_root = '../mmr/datasets/CASIA-Ship/'
 # n_frozen_epoch = 5
 
 angle_version = 'le135'
-
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -52,6 +51,9 @@ data = dict(
     train=dict(
         type='DDClassBalancedDataset',
         oversample_thr=0.5, # change this base on dataset
+        classes=classes,
+        ann_file=data_root + 'train/labels/',
+        img_prefix=data_root + 'train/images/',
         dataset=dict(
             type=dataset_type,
             classes=classes,
@@ -93,11 +95,8 @@ model = dict(
         convert_weights=True,
         init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
     neck=dict(
-        _delete_=True,
         type='PAFPN',
-        in_channels=[96, 192, 384, 768],
-        out_channels=256,
-        num_outs=5),
+        in_channels=[96, 192, 384, 768]),
     bbox_head=dict(
             num_classes=n_classes)
     )
