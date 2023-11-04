@@ -1,7 +1,7 @@
 #!/bin/bash
 # Train model 1
 echo "Training model 1..."
-python tools/train.py configs/rotated_faster_rcnn/custom_r_frcnn_SRSDD.py
+python tools/train.py configs/rotated_retinanet/t_custom_r_ret_SRSDD.py
 # Check if model 1 was trained successfully
 if [ $? -eq 0 ]; then
   echo "Model 1 trained successfully."
@@ -11,7 +11,7 @@ else
 fi
 # Train model 2
 echo "Training model 2..."
-python tools/train.py configs/rotated_faster_rcnn/custom_r_frcnn_CASIA.py
+python tools/train.py configs/rotated_retinanet/t_custom_r_ret_CASIA.py
 # Check if model 2 was trained successfully
 if [ $? -eq 0 ]; then
   echo "Model 2 trained successfully."
