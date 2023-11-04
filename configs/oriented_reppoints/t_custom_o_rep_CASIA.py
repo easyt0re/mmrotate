@@ -4,9 +4,6 @@ dataset_type = 'DDDOTADataset'
 classes = ('ship', 'submarine')
 n_classes = len(classes)
 
-class_weight = [1., 20., 0.5]
-
-# classes = ('ship', 'submarine')
 # data_root = 'datasets/split_data/'
 # data_root = 'datasets/CASIA-Ship/'
 # data_root = 'data/split_ss_dota/'
@@ -48,7 +45,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type='DDClassBalancedDataset',
-        oversample_thr=0.5, # change this base on dataset
+        oversample_thr=1/n_classes, # change this base on dataset
         dataset=dict(
             type=dataset_type,
             classes=classes,
@@ -74,15 +71,12 @@ model = dict(
     # roi_head=dict(
         bbox_head=dict(
             num_classes=n_classes,
-            # loss_cls=dict(class_weight=class_weight)
-            # changed this based on this page
-            # https://mmdetection.readthedocs.io/en/v2.9.0/_modules/mmdet/models/losses/cross_entropy_loss.html
-            loss_cls=dict(
-                type='FocalLoss',
-                use_sigmoid=True,
-                gamma=4.0,
-                alpha=0.6,
-                loss_weight=1.0)
+            # loss_cls=dict(
+            #     type='FocalLoss',
+            #     use_sigmoid=True,
+            #     gamma=4.0,
+            #     alpha=0.6,
+            #     loss_weight=1.0)
         )
     # ),
     # backbone=dict(frozen_stages=n_frozen_stages)

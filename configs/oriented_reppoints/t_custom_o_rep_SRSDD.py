@@ -1,15 +1,20 @@
-_base_ = 'rotated_retinanet_obb_r50_fpn_1x_dota_le90.py'
+_base_ = 'oriented_reppoints_r50_fpn_1x_dota_le135.py'
 
 dataset_type = 'DDDOTADataset'
-classes = ('ship', 'submarine')
+classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
+# classes = ('ship', 'submarine')
 n_classes = len(classes)
 
-data_root = '../mmr/datasets/CASIA-Ship/'
+# data_root = 'datasets/split_data/'
+# data_root = 'datasets/CASIA-Ship/'
+# data_root = 'data/split_ss_dota/'
+data_root = '../mmr/datasets/SRSDD_DOTA/'
+# data_root = '../mmr/datasets/CASIA-Ship/'
 
 # n_frozen_stages = 1
 # n_frozen_epoch = 5
 
-angle_version = 'le90'
+angle_version = 'le135'
 
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -82,7 +87,7 @@ model = dict(
 # custom_hooks = [dict(type="UnfreezeBackboneEpochBasedHook", unfreeze_epoch=n_frozen_epoch)]
 
 # schedule
-optimizer = dict(lr=0.005) # given seems to be 0.02 step and warmup
+optimizer = dict(lr=0.005) # default 0.008
 # learning policy
 # lr_config = None
 lr_config = dict(
@@ -99,5 +104,3 @@ checkpoint_config = dict(interval=10)
 # ckpt_name = 'epoch_1.pth' # specify ckpt file name here
 # resume_from = './work_dirs/resume_ckpt/' + ckpt_name
 workflow = [('train', 1), ('val', 1)]
-
-# work_dir = './run_CASIA-Ship/rotated_retinanet'

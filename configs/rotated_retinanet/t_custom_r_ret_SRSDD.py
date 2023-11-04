@@ -1,10 +1,12 @@
 _base_ = 'rotated_retinanet_obb_r50_fpn_1x_dota_le90.py'
 
 dataset_type = 'DDDOTADataset'
-classes = ('ship', 'submarine')
+classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
+# classes = ('ship', 'submarine')
 n_classes = len(classes)
 
-data_root = '../mmr/datasets/CASIA-Ship/'
+data_root = '../mmr/datasets/SRSDD_DOTA/'
+# data_root = '../mmr/datasets/CASIA-Ship/'
 
 # n_frozen_stages = 1
 # n_frozen_epoch = 5
