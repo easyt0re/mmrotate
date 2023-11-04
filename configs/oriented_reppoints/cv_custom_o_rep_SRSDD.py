@@ -4,14 +4,15 @@ _base_ = 'oriented_reppoints_r50_fpn_1x_dota_le135.py'
 pretrained = 'work_dirs/pretrained_models/swin_tiny_patch4_window7_224.pth'
 
 dataset_type = 'DDDOTADataset'
-classes = ('ship', 'submarine')
+classes = ('ore-oil', 'Cell-Container', 'Fishing', 'LawEnforce', 'Dredger', 'Container')
+# classes = ('ship', 'submarine')
 n_classes = len(classes)
 
 # data_root = 'datasets/split_data/'
 # data_root = 'datasets/CASIA-Ship/'
 # data_root = 'data/split_ss_dota/'
-# data_root = '../mmr/datasets/SRSDD_DOTA/'
-data_root = '../mmr/datasets/CASIA-Ship/'
+data_root = '../mmr/datasets/SRSDD_DOTA/'
+# data_root = '../mmr/datasets/CASIA-Ship/'
 
 # n_frozen_stages = 1
 # n_frozen_epoch = 5
