@@ -28,6 +28,12 @@ data = dict(
         img_prefix=data_root + 'test/images/'),
 )
 
+model = dict(
+    bbox_head=dict(
+        num_classes=n_classes
+    )
+)
+
 # learning policy
 lr_config = dict(
     policy='step',

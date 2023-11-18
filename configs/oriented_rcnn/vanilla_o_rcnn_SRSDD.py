@@ -28,6 +28,14 @@ data = dict(
         img_prefix=data_root + 'test/images/'),
 )
 
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(
+            num_classes=n_classes
+        )
+    )
+)
+
 # schedule
 optimizer = dict(lr=0.005) # default 0.005
 # learning policy
