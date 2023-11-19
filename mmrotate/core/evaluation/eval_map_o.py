@@ -33,8 +33,8 @@ def tpfp_default(det_bboxes,
     # an indicator of ignored gts
     det_bboxes = np.array(det_bboxes)
     gt_ignore_inds = np.concatenate(
-        (np.zeros(gt_bboxes.shape[0], dtype=np.bool),
-         np.ones(gt_bboxes_ignore.shape[0], dtype=np.bool)))
+        (np.zeros(gt_bboxes.shape[0],
+                  dtype=bool), np.ones(gt_bboxes_ignore.shape[0], dtype=bool)))
     # stack gt_bboxes and gt_bboxes_ignore for convenience
     gt_bboxes = np.vstack((gt_bboxes, gt_bboxes_ignore))
 
@@ -167,15 +167,11 @@ def eval_rbbox_map(det_results,
     num_imgs = len(det_results)
     num_scales = len(scale_ranges) if scale_ranges is not None else 1
     num_classes = len(det_results[0])  # positive class num
-    area_ranges = ([(rg[0] ** 2, rg[1] ** 2) for rg in scale_ranges]
+    area_ranges = ([(rg[0]**2, rg[1]**2) for rg in scale_ranges]
                    if scale_ranges is not None else None)
 
     pool = get_context('spawn').Pool(nproc)
     eval_results = []
-    # 记录总的tp和fp，即将每个类别的tp和fp相加
-    tp_total = 0
-    fp_total = 0
-    gts_total = 0
     for i in range(num_classes):
         # get gt and det bboxes of this class
         cls_dets, cls_gts, cls_gts_ignore = get_cls_results(
@@ -205,13 +201,6 @@ def eval_rbbox_map(det_results,
         sort_inds = np.argsort(-cls_dets[:, -1])
         tp = np.hstack(tp)[:, sort_inds]
         fp = np.hstack(fp)[:, sort_inds]
-        # 记录总的tp和fp，即将每个类别的tp和fp相加
-        tp_sum = int(np.sum(tp))
-        fp_sum = int(np.sum(fp))
-        # print("\ntp_sum:{tp},fp_sum:{fp}".format(tp=tp_sum, fp=fp_sum))
-        tp_total += int(tp_sum)
-        fp_total += int(fp_sum)
-        # print("tp_total:{tp},fp_total:{fp}".format(tp=tp_total, fp=fp_total))
         # calculate recall and precision with tp and fp
         tp = np.cumsum(tp, axis=1)
         fp = np.cumsum(fp, axis=1)
@@ -232,18 +221,7 @@ def eval_rbbox_map(det_results,
             'precision': precisions,
             'ap': ap
         })
-        gts_sum = np.sum(num_gts)
-        # print("gts_sum:{}".format(gts_sum))
-        gts_total += gts_sum
-        # print("gts_total:{}".format(gts_total))
-
     pool.close()
-    total_precision = tp_total / (tp_total + fp_total) if tp_total + fp_total != 0 else 0
-    total_recall = tp_total / gts_total
-    total_f1_score = 2 * total_precision * total_recall / (total_precision + total_recall)
-    print("\nRecall = {recall:.3f},Precision = {precision:.3f},F1-score = {F1:.3f}\n".format(recall=total_recall,
-                                                                                             precision=total_precision,
-                                                                                             F1=total_f1_score))
     if scale_ranges is not None:
         # shape (num_classes, num_scales)
         all_ap = np.vstack([cls_result['ap'] for cls_result in eval_results])
@@ -262,15 +240,8 @@ def eval_rbbox_map(det_results,
                 aps.append(cls_result['ap'])
         mean_ap = np.array(aps).mean().item() if aps else 0.0
 
-    # 输出总的recall,precision和f1-score
-    # print("Recall = {recall:.3f},Precision = {precision:.3f},F1-score = {f1:.3f}".format(recall=total_recall, precision=total_precision, f1=total_f1_score))
-    # print("Recall = {}".format(total_recall))
-    # print("Precision = {}".format(total_precision))
-    # print("F1-score = {}".format(total_f1_score))
     print_map_summary(
-        mean_ap, eval_results, dataset, area_ranges, logger=logger,
-        precision=total_precision, recall=total_recall, f1=total_f1_score
-    )
+        mean_ap, eval_results, dataset, area_ranges, logger=logger)
 
     return mean_ap, eval_results
 
@@ -279,11 +250,7 @@ def print_map_summary(mean_ap,
                       results,
                       dataset=None,
                       scale_ranges=None,
-                      logger=None,
-                      precision=None,
-                      recall=None,
-                      f1=None
-                      ):
+                      logger=None):
     """Print mAP and results of each class.
 
     A table will be printed to show the gts/dets/recall/AP of each class and
@@ -312,14 +279,11 @@ def print_map_summary(mean_ap,
     num_classes = len(results)
 
     recalls = np.zeros((num_scales, num_classes), dtype=np.float32)
-    precisions = np.zeros((num_scales, num_classes), dtype=np.float32)
     aps = np.zeros((num_scales, num_classes), dtype=np.float32)
     num_gts = np.zeros((num_scales, num_classes), dtype=int)
     for i, cls_result in enumerate(results):
         if cls_result['recall'].size > 0:
             recalls[:, i] = np.array(cls_result['recall'], ndmin=2)[:, -1]
-        if cls_result['precision'].size > 0:
-            precisions[:, i] = np.array(cls_result['precision'], ndmin=2)[:, -1]
         aps[:, i] = cls_result['ap']
         num_gts[:, i] = cls_result['num_gts']
 
@@ -331,7 +295,7 @@ def print_map_summary(mean_ap,
     if not isinstance(mean_ap, list):
         mean_ap = [mean_ap]
 
-    header = ['class', 'gts', 'dets', 'recall', 'precision', 'ap']
+    header = ['class', 'gts', 'dets', 'recall', 'ap']
     for i in range(num_scales):
         if scale_ranges is not None:
             print_log(f'Scale range {scale_ranges[i]}', logger=logger)
@@ -339,13 +303,10 @@ def print_map_summary(mean_ap,
         for j in range(num_classes):
             row_data = [
                 label_names[j], num_gts[i, j], results[j]['num_dets'],
-                f'{recalls[i, j]:.3f}', f'{precisions[i, j]:.3f}', f'{aps[i, j]:.3f}'
+                f'{recalls[i, j]:.3f}', f'{aps[i, j]:.3f}'
             ]
             table_data.append(row_data)
-        table_data.append(['mAP', '', '', '', '', f'{mean_ap[i]:.3f}'])
-        table_data.append(['precision', '', '', '', '', f'{precision:.3f}'])
-        table_data.append(['recall', '', '', '', '', f'{recall:.3f}'])
-        table_data.append(['f1-score', '', '', '', '', f'{f1:.3f}'])
+        table_data.append(['mAP', '', '', '', f'{mean_ap[i]:.3f}'])
         table = AsciiTable(table_data)
-        # table.inner_footing_row_border = True
+        table.inner_footing_row_border = True
         print_log('\n' + table.table, logger=logger)
