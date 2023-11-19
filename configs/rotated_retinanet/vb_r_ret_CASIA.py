@@ -1,4 +1,4 @@
-_base_ = 't_custom_t_ret_CASIA.py'
+_base_ = 't_custom_r_ret_CASIA.py'
 
 model = dict(
     bbox_head=dict(
