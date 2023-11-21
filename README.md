@@ -178,6 +178,9 @@ putting the env together is a bit old now, let's note this down
 - pip install yapf==0.40.1
 - `mmrotate`, `datasets`, `__init__` `builder` and the rest
 
+somewhere here there is also
+- sudo apt-get install ffmpeg libsm6 libxext6
+
 for the GUI software
 - conda install pyqt torchvision==0.9.0
   - seems that shouldn't do pyqt directly
@@ -185,6 +188,8 @@ for the GUI software
   - you still need to install a bunch of things with apt-get after this it seems
 - could not connect to any X display
   - of course, if we have a linux machine, it's not a problem
+  - follow [these steps](https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2) specifically to make it work
+
 
 
 MMRotate is an open-source toolbox for rotated object detection based on PyTorch.
